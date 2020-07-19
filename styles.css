@@ -1,0 +1,17 @@
+body{
+    text-align: center;
+    width: 600px;
+    margin: auto;
+}
+
+div{
+    width: 500px;
+    height: 120px;
+    border: 2px solid black;
+    border-radius: 15px;
+    margin: auto;
+}
+
+button{
+    padding: 25px;
+}
