@@ -2,46 +2,51 @@
 
 // Global Variables
 let divEl;
-let copyInfo;
+
+// Arrays
+let contactInfo = [{
+    name: "Alexandra",
+    birthday: "March 31, 2003",
+    phone: "780-555-3029"
+}, {
+    name: "Martin",
+    birthday: "June 11, 2001",
+    phone: "461-353-9923"
+}];
 
 // Event Listeners
 document.getElementById("showContacts").addEventListener("click", showAllContacts);
+document.getElementById("deleteContact").addEventListener("click", deleteContact);
+document.getElementById("addContact").addEventListener("click", addContact);
+
 
 // Event Functions
 function showAllContacts() {
-    for (let i = 0; i < contactNames.length; i++) {
+    for (let i = 0; i < contactInfo.length; i++) {
         // Create new div and copy name:
-        divEl = document.getElementById("contact-person");
-        copyInfo = divEl.cloneNode(true);
-        document.body.append(copyInfo);
-
-
-        displayName("name", "Name", contactNames[i]);
-        displayName("phoneNumber", "Phone Number", phoneNumbers[i]);
-        displayName("birthday", "Birthday", birthDay[i]);
+        divEl = document.createElement("div");
+        divEl.innerHTML = "<p> Name: " + contactInfo[i].name + "</p> <p> Phone: " + contactInfo[i].phone + "</p> <p>Birthday: " + contactInfo[i].birthday + "</p>";
+        document.body.append(divEl);
     }
-
 }
 
-
-function displayName(id, section, variable) {
-    document.getElementById(id).innerHTML = section + ": " + variable;
+function deleteContact() { 
+    divEl.remove();
 }
 
-// Load names.txt file
-let contactNames;
-fetch("names.txt")
-    .then((rawNames) => rawNames.text())
-    .then((names) => contactNames = names.split("\r\n"));
+function addContact() {
+    let name = prompt("Enter name: ");
+    let birthday = prompt("Enter birth date: ");
+    let phone = prompt("Enter phone number: ");
 
-// Load phone.txt file
-let phoneNumbers;
-fetch("phone.txt")
-    .then((rawPhone) => rawPhone.text())
-    .then((phoneNum) => phoneNumbers = phoneNum.split("\r\n"));
+    contactInfo.push({
+        name,
+        birthday,
+        phone
+    });
 
-// Load birthday.txt file
-let birthDay;
-fetch("birthday.txt")
-    .then((rawDates) => rawDates.text())
-    .then((dates) => birthDay = dates.split("\r\n"));
+    // Create new div and copy name:
+    divEl = document.createElement("div");
+    divEl.innerHTML = "<p> Name: " + name + "</p> <p> Phone: " + phone + "</p> <p>Birthday: " + birthday + "</p>";
+    document.body.append(divEl);
+}

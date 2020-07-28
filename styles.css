@@ -1,7 +1,15 @@
+/* Stylesheet */
+html{
+    padding: 15px;
+    background-color: rgb(153, 196, 186);
+}
+
 body{
     text-align: center;
     width: 600px;
     margin: auto;
+    background-color: rgb(194, 232, 245);
+    padding: 15px;
 }
 
 div{
